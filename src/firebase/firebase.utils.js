@@ -40,6 +40,44 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
+// Code here for transfer hardcoded data to Firebase Database
+// export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+//   const collectionRef = firestore.collection(collectionKey);
+
+//     const batch = firestore.batch();
+//     objectsToAdd.forEach(obj => {
+//       const newDocRef = collectionRef.doc();
+//       batch.set(newDocRef, obj)}
+//       );
+
+//     return await console.log("The return of batch.commit()", batch.commit());
+
+//  };
+
+// Ends here
+
+// This code written to get the data from firebase collection to our appliction
+
+export const convertCollectionsSnapshotToMap = collections => {
+  const transformedCollection = collections.docs.map(doc => {
+    const { title, items } = doc.data();
+
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items
+    };
+  });
+
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  }, {});
+};
+
+// ends here
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
