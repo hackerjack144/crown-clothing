@@ -25,8 +25,13 @@ const Header = ({ currentUser, hidden }) => (
     <OptionContainer>
 
       <LogoContainer to='/shop'>
-        SHOP
+        SHOPPING
       </LogoContainer>
+
+      <LogoContainer to='/shop'>
+        CONTACT
+      </LogoContainer>
+
       {
         currentUser ? (
           <OptionLink as='div' onClick={() => auth.signOut()}> {/* as='div' we have used while using OptionLink css */}

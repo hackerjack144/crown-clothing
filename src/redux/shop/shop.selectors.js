@@ -16,7 +16,7 @@ const selectShop = state => state.shop;
 
 export const selectCollections = createSelector(
     [selectShop], 
-    (shop) => shop.collections
+    shop => shop.collections
 );
 
 // this below function is written because collection.coponent is still thinks that data comes from array but data comes from an object of Hash TAble Object,
@@ -24,7 +24,7 @@ export const selectCollections = createSelector(
 
 export const selectCollectionsForPreview = createSelector(
     [selectCollections],
-    (collections) => collections ? Object.keys(collections).map(key => collections[key]) : []
+    collections => collections ? Object.keys(collections).map(key => collections[key]) : []
 );
 
 // Code ends here
@@ -45,3 +45,13 @@ export const selectCollection = collectionUrlParam =>
         [selectCollections],
         collections => (collections ? collections[collectionUrlParam] : null)
     );
+
+export const selectIsCollectionFetching = createSelector(
+    [selectShop],
+    shop => shop.isFetching
+);
+
+export const selectIsCollectionsLoaded = createSelector(
+    [selectShop],
+    shop => !!shop.collections
+);
