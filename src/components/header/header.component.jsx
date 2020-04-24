@@ -26,7 +26,7 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
         SHOPPING
       </LogoContainer>
 
-      <LogoContainer to='/shop'>
+      <LogoContainer to='/contact'>
         CONTACT
       </LogoContainer>
 
